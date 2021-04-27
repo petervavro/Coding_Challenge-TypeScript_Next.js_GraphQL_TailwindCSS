@@ -56,7 +56,7 @@ export default function Blocks() {
       {hasMore && (
         <div className="flex justify-end p-3">
           <button
-            className="w-full inline-flex items-center justify-center bg-blue-100 px-4 py-2 text-xs font-semibold tracking-wider text-blue-600 rounded hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="w-full inline-flex items-center justify-center transition duration-200 ease-in-out bg-blue-100 px-4 py-2 text-xs font-semibold tracking-wider text-blue-600 rounded hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             disabled={isLoadingMore}
             onClick={async () => {
               setIsLoadingMore(true)

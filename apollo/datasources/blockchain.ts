@@ -1,10 +1,21 @@
 import { RESTDataSource } from 'apollo-datasource-rest'
 import { DataSourceConfig } from 'apollo-datasource'
 
+type Transaction = {
+  hash: string
+  block_index: number
+  block_height: number
+}
+
 type Block = {
+  height: number
   hash: string
   time: number
-  height: number
+  main_chain: boolean
+  prev_block: string
+  block_index: number
+  size: number
+  tx: Transaction[]
 }
 
 class BlockChainAPI extends RESTDataSource {
@@ -18,16 +29,39 @@ class BlockChainAPI extends RESTDataSource {
     this.initialize({} as DataSourceConfig<Record<string, unknown>>) // calling initialize() function with empty object is the key
   }
 
+  transactionReducer({
+    hash,
+    block_index: blockIndex,
+    block_height: blockHeight,
+  }: Transaction) {
+    return {
+      cursor: `${hash}`,
+      hash,
+      blockIndex,
+      blockHeight,
+    }
+  }
+
   blockReducer({
     height,
     hash,
     time,
+    prev_block: prevBlock,
+    block_index: blockIndex,
+    size,
+    tx,
   }: Block) {
     return {
       cursor: `${height}`,
       height,
       hash,
       time,
+      prevBlock,
+      blockIndex,
+      size,
+      ...(tx && {
+        transactions: tx.map(this.transactionReducer),
+      }),
     }
   }
 
@@ -43,6 +77,19 @@ class BlockChainAPI extends RESTDataSource {
     } catch (error) {
       return []
     }
+  }
+
+  async getBlockById({ hash }: { hash: string }) {
+    // https://www.blockchain.com/api/blockchain_api
+    const response = await this.get(`rawblock/${hash}`)
+    return this.blockReducer(response)
+  }
+
+  async getAllTransactions({ hash }: { hash: string }) {
+    // https://www.blockchain.com/api/blockchain_api
+    const response = await this.get(`rawblock/${hash}`)
+    const { transactions = [] } = this.blockReducer(response)
+    return transactions
   }
 }
 

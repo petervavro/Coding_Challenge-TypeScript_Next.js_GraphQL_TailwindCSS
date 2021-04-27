@@ -27,5 +27,49 @@ export const resolvers = {
           : false,
       }
     },
+    block: async (
+      _: unknown,
+      { hash }: { hash: string },
+      { dataSources }: { dataSources: DataSources }
+    ) => {
+      const {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        transactions,
+        ...rest
+      } = await dataSources.blockchainAPI.getBlockById({ hash })
+
+      return rest
+    },
+    transactions: async (
+      _: unknown,
+      {
+        hash,
+        pageSize = 10,
+        after,
+      }: { hash: string; pageSize: number; after: string },
+      { dataSources }: { dataSources: DataSources }
+    ) => {
+      // Get transactions from server
+      const transactions = await dataSources.blockchainAPI.getAllTransactions({
+        hash,
+      })
+
+      const txs = paginateResults({
+        after,
+        pageSize,
+        results: transactions,
+      })
+
+      return {
+        items: txs,
+        cursor: txs.length ? txs[txs.length - 1].cursor : null,
+        // if the cursor of the end of the paginated results is the same as the
+        // last item in _all_ results, then there are no more results after this
+        hasMore: txs.length
+          ? txs[txs.length - 1].cursor !==
+            transactions[transactions.length - 1].cursor
+          : false,
+      }
+    },
   },
 }

@@ -7,7 +7,7 @@
     "build": "next build --debug",
     "start": "next start",
     "apollo:codegen:schema": "npx apollo client:download-schema --endpoint=http://localhost:3000/api/graphql",
-    "apollo:codegen:generate": "npx apollo client:codegen --localSchemaFile=schema.json --includes=pages/**/*.tsx --target=typescript",
+    "apollo:codegen:generate": "npx apollo client:codegen --localSchemaFile=schema.json --includes=containers/**/*.tsx,pages/**/*.tsx --target=typescript",
     "apollo:generate": "yarn apollo:codegen:schema && yarn apollo:codegen:generate",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.0.2",
-    "@headlessui/react": "^1.0.0",
     "apollo-datasource-rest": "^0.12.0",
     "apollo-server-micro": "^2.14.2",
     "graphql": "^14.0.2",
@@ -31,8 +30,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@testing-library/react": "^11.2.6",
     "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.6",
     "@types/jest": "^26.0.22",
     "@types/react": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^4.22.0",

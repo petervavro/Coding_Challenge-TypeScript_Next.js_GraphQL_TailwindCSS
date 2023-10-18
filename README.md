@@ -1,14 +1,11 @@
 # Coding Challenge - Web-based client for blockchain.info
 
 - Technologies: TypeScript, GraphQL (Apollo Server and Client), Next.js, React, Node, Tailwind CSS
-- Author: Peter Vavro (peter@vavro.me)
 
 ## The Task:
-
 Create a web-based client for ​http://blockchain.info​ that allows users to list the latest blocks and details of each block. A block is just a data structure which groups transactions.
 
-The UI (frontend) component:
-
+### The UI (frontend) component:
 Implement a frontend (e.g. React) that contains the following functionality:
 
 - The first view (i.e. the landing screen) should display a list of blocks and the following details for each block:
@@ -37,6 +34,7 @@ To make your UI work you’ll need to provide an API to fetch the latest blocks 
   ➔ https://blockchain.info/blocks/$time_in_milliseconds?format=json
   ```
   E.g.: [https://blockchain.info/blocks/1573858800000?format=json](https://blockchain.info/blocks/1573858800000?format=json), for the "time in milliseconds", you could just make this the previous day (or even configurable if you want to).
+
 - To get the details for a block you can use the following API call:
   ```
   ➔ https://blockchain.info/rawblock/<block-hash>

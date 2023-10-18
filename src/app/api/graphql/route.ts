@@ -1,8 +1,24 @@
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
-import { ApolloServer } from "@apollo/server";
 import { NextRequest } from "next/server";
+import { RESTDataSource } from '@apollo/datasource-rest';
+import { ApolloServer } from "@apollo/server";
 import typeDefs from './schema/typeDefs'
 import resolvers from './schema/resolvers'
+
+class BlocksAPI extends RESTDataSource {
+    override baseURL = 'https://blockchain.info/';
+
+    async getBlocks(ts: Date) {
+        console.log('getBlocks');
+
+        const data = await this.get(`blocks/${+new Date(ts)}`, {
+            params: {
+                format: 'json'
+            },
+        });
+        return data;
+    }
+}
 
 const server = new ApolloServer({
     typeDefs,
@@ -10,7 +26,16 @@ const server = new ApolloServer({
 });
 
 const handler = startServerAndCreateNextHandler<NextRequest>(server, {
-    context: async req => ({ req }),
+    context: async () => {
+
+        const { cache } = server;
+
+        return {
+            dataSources: {
+                blocksAPI: new BlocksAPI({ cache }),
+            },
+        };
+    },
 });
 
 export { handler as GET, handler as POST };

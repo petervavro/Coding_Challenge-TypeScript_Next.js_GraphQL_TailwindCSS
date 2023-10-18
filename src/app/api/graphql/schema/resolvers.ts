@@ -1,6 +1,12 @@
 const resolvers = {
     Query: {
-        hello: () => "Hello world!",
+        blocks: async (
+            _source: any,
+            { dt }: { dt: string },
+            { dataSources: { blocksAPI } }: any
+        ) => {
+            return blocksAPI.getBlocks(new Date(dt));
+        },
     },
 };
 

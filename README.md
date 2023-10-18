@@ -9,7 +9,6 @@ Create a web-based client for ​http://blockchain.info​ that allows users to 
 Implement a frontend (e.g. React) that contains the following functionality:
 
 - The first view (i.e. the landing screen) should display a list of blocks and the following details for each block:
-
   - Block hash
   - Block time
   - Bock height

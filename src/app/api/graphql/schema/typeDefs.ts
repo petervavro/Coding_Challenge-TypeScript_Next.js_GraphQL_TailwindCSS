@@ -2,8 +2,8 @@ import { gql } from 'graphql-tag'
 
 const typeDefs = gql`
   type Query {
-    block(blockHash: String): Block!
-    blocks(dt: String): [Block!]!
+    getBlock(blockHash: String): Block!
+    getBlocks(dt: String): [Block!]!
   }
 
   type Block {

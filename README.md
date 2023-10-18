@@ -11,14 +11,12 @@ Implement a frontend (e.g. React) that contains the following functionality:
 - The first view (i.e. the landing screen) should display a list of blocks and the following details for each block:
   - Block hash
   - Block time
-  - Bock height
-  - If you get some time you might want to implement pagination on the results.
+  - Block height
 
 - A user should be able to click on each block and view the following details for the block:
   - Size
   - Block index
   - Previous hash
-  - If you get some time it would be great if you could also display the list of transactions for each block - you can decide on what details should be displayed.
 
 ### The API component:
 

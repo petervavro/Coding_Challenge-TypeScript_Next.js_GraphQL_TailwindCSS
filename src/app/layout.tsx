@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { ApolloWrapper } from "./ApolloWrapper";
+import CustomNextUIProvider from "@/providers/CustomNextUIProvider";
 
-const inter = Inter({ subsets: ['latin'] })
+// import { Inter } from 'next/font/google'
+// const inter = Inter({ subsets: ['latin'] })
+// className={inter.className}
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,10 +17,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ApolloWrapper>{children}</ApolloWrapper>
+    <html lang="en" className='dark'>
+      <body>
+        <CustomNextUIProvider>
+          <ApolloWrapper>{children}</ApolloWrapper>
+        </CustomNextUIProvider>
       </body>
     </html>
   )

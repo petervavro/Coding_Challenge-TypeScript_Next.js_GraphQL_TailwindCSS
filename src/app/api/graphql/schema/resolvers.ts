@@ -1,13 +1,13 @@
 const resolvers = {
     Query: {
-        block: async (
+        getBlock: async (
             _source: any,
             { blockHash }: { blockHash: string },
             { dataSources: { blocksAPI } }: any
         ) => {
             return blocksAPI.getBlock(blockHash);
         },
-        blocks: async (
+        getBlocks: async (
             _source: any,
             { dt }: { dt: string },
             { dataSources: { blocksAPI } }: any

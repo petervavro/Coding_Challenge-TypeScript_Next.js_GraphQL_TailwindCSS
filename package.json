@@ -14,6 +14,8 @@
     "@apollo/experimental-nextjs-app-support": "^0.4.3",
     "@apollo/server": "^4.9.4",
     "@as-integrations/next": "^2.0.2",
+    "@nextui-org/react": "^2.1.13",
+    "framer-motion": "^10.16.4",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
     "next": "13.5.5",

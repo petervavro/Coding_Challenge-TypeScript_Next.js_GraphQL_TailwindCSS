@@ -8,9 +8,11 @@ import resolvers from './schema/resolvers'
 class BlocksAPI extends RESTDataSource {
     override baseURL = 'https://blockchain.info/';
 
-    async getBlocks(ts: Date) {
-        console.log('getBlocks');
+    async getBlock(blockHash: string) {
+        return this.get(`rawblock/${encodeURIComponent(blockHash)}`);
+    }
 
+    async getBlocks(ts: Date) {
         const data = await this.get(`blocks/${+new Date(ts)}`, {
             params: {
                 format: 'json'

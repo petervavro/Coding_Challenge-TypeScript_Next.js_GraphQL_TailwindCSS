@@ -2,6 +2,7 @@ import { gql } from 'graphql-tag'
 
 const typeDefs = gql`
   type Query {
+    block(blockHash: String): Block!
     blocks(dt: String): [Block!]!
   }
 

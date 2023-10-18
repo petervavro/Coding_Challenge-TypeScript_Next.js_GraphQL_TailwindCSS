@@ -43,24 +43,3 @@ To make your UI work you’ll need to provide an API to fetch the latest blocks 
   ```
   `<block-hash>` is the hash that is provided for each block in the previous call.
   For example: [https://blockchain.info/rawblock/0000000000000000001088de93437040aabd17df2b9ee3835dfe784f81f67e](https://blockchain.info/rawblock/0000000000000000001088de93437040aabd17df2b9ee3835dfe784f81f67e)
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn dev`
-
-Runs the app in the development mode.
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-### `yarn test:watch`
-
-Launches the test runner in the interactive watch mode.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.
-
-### `yarn apollo:generate`
-
-Download GraphQL schema and generate static types from GraphQL schema. More at [Generate TypeScript Types from GraphQL](https://www.newline.co/@eigenjoy/generate-typescript-types-from-graphql--a754494c) Note: Development server must be up and running.

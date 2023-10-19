@@ -1,0 +1,1 @@
+export { default, GET_BLOCKS_QUERY } from './TableBlocks'

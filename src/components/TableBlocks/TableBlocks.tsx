@@ -17,11 +17,11 @@ import {
 } from "@nextui-org/table";
 import { Spinner } from '@nextui-org/spinner';
 import { Tooltip } from '@nextui-org/tooltip';
-import EyeIcon from './EyeIcon'
+import EyeIcon from '../EyeIcon'
 import { GetBlocksQuery, QueryGetBlocksArgs } from '@/__generated__/graphql';
 
 
-const GET_BLOCKS_QUERY = gql(`
+export const GET_BLOCKS_QUERY = gql(`
     query GetBlocks($dt: String!) {
         getBlocks(dt: $dt) {
             hash
@@ -78,9 +78,12 @@ export default function TableBlocks({ dt }: Props) {
                     <div className="relative flex items-center gap-2">
                         <Tooltip content="Details">
                             <Link href={`/block/${item.hash}`}>
-                                <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                                <button
+                                    title="Details"
+                                    className="text-lg text-default-400 cursor-pointer active:opacity-50"
+                                >
                                     <EyeIcon />
-                                </span>
+                                </button>
                             </Link>
                         </Tooltip>
                     </div>

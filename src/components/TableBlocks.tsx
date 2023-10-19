@@ -6,7 +6,7 @@ import { Link as NextUILink } from "@nextui-org/react";
 import {
     useQuery,
 } from "@apollo/experimental-nextjs-app-support/ssr";
-import { gql } from "@apollo/client";
+import { gql } from "@/__generated__/gql";
 import {
     Table,
     TableHeader,
@@ -18,9 +18,11 @@ import {
 import { Spinner } from '@nextui-org/spinner';
 import { Tooltip } from '@nextui-org/tooltip';
 import EyeIcon from './EyeIcon'
+import { GetBlocksQuery, QueryGetBlocksArgs } from '@/__generated__/graphql';
 
-const blocksQuery = gql`
-    query Blocks($dt: String) {
+
+const GET_BLOCKS_QUERY = gql(`
+    query GetBlocks($dt: String!) {
         getBlocks(dt: $dt) {
             hash
             height
@@ -28,13 +30,14 @@ const blocksQuery = gql`
             block_index
         }
     }
-`;
+`);
 
-type BlockType = { hash: string; height: number; time: number; }
-type Props = { dt: string }
+type GetBlocksQueryItem = GetBlocksQuery['getBlocks'][0];
+type ColumnsKeysType = keyof Omit<GetBlocksQueryItem, '__typename'> | 'actions'
+type Props = QueryGetBlocksArgs
 
 export default function TableBlocks({ dt }: Props) {
-    const { loading, error, data } = useQuery<{ getBlocks: BlockType[] }>(blocksQuery, {
+    const { loading, error, data } = useQuery(GET_BLOCKS_QUERY, {
         variables: {
             dt,
         },
@@ -59,8 +62,8 @@ export default function TableBlocks({ dt }: Props) {
     ];
 
     const renderCell = React.useCallback((
-        item: BlockType,
-        columnKey: keyof BlockType | 'actions'
+        item: GetBlocksQueryItem,
+        columnKey: ColumnsKeysType
     ) => {
 
         switch (columnKey) {
@@ -109,7 +112,7 @@ export default function TableBlocks({ dt }: Props) {
                     <TableRow key={item.hash}>
                         {(columnKey) => (
                             <TableCell>
-                                {renderCell(item, columnKey as keyof BlockType)}
+                                {renderCell(item, columnKey as ColumnsKeysType)}
                             </TableCell>
                         )}
                     </TableRow>

@@ -1,9 +1,10 @@
 import React from 'react'
 import { gql } from "@apollo/client";
 import { getClient } from "@/providers/ApolloClient";
+import { QueryGetBlockArgs } from '@/__generated__/graphql';
 
-const blockQuery = gql`
-  query Block($blockHash: String) {
+const GET_BLOCK_QUERY = gql(`
+  query GetBlock($blockHash: String) {
     getBlock(blockHash: $blockHash) {
       hash
       height
@@ -11,15 +12,13 @@ const blockQuery = gql`
       block_index
     }
   }
-`;
+`);
 
-type Props = {
-    blockHash: string;
-}
+type Props = QueryGetBlockArgs
 
 export default async function BlockDetails({ blockHash }: Props) {
     const { data: { getBlock } } = await getClient().query({
-        query: blockQuery,
+        query: GET_BLOCK_QUERY,
         variables: {
             blockHash
         }

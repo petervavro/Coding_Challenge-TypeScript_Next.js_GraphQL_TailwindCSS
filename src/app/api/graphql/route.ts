@@ -5,7 +5,7 @@ import { ApolloServer } from "@apollo/server";
 import typeDefs from './schema/typeDefs'
 import resolvers from './schema/resolvers'
 
-class BlocksAPI extends RESTDataSource {
+export class BlocksAPI extends RESTDataSource {
     override baseURL = 'https://blockchain.info/';
 
     async getBlock(blockHash: string) {
@@ -22,7 +22,13 @@ class BlocksAPI extends RESTDataSource {
     }
 }
 
-const server = new ApolloServer({
+export interface MyContext {
+    dataSources?: {
+        blocksAPI: BlocksAPI;
+    };
+}
+
+const server = new ApolloServer<MyContext>({
     typeDefs,
     resolvers,
 });

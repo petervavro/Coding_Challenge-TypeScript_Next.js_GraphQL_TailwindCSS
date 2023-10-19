@@ -1,18 +1,24 @@
-const resolvers = {
+import { Resolvers } from '@/__generated__/resolvers-types';
+
+const resolvers: Resolvers = {
     Query: {
         getBlock: async (
-            _source: any,
-            { blockHash }: { blockHash: string },
-            { dataSources: { blocksAPI } }: any
+            _source,
+            { blockHash },
+            { dataSources }
         ) => {
-            return blocksAPI.getBlock(blockHash);
+            const { blocksAPI } = dataSources || {}
+
+            return blocksAPI && blocksAPI.getBlock(blockHash || '');
         },
         getBlocks: async (
-            _source: any,
-            { dt }: { dt: string },
-            { dataSources: { blocksAPI } }: any
+            _source,
+            { dt },
+            { dataSources }
         ) => {
-            return blocksAPI.getBlocks(new Date(dt));
+            const { blocksAPI } = dataSources || {}
+
+            return blocksAPI && blocksAPI.getBlocks(new Date(dt));
         },
     },
 };

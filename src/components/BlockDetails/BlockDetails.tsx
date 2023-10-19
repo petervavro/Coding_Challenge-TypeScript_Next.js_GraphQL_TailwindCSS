@@ -1,9 +1,9 @@
 import React from 'react'
-import { gql } from "@apollo/client";
+import { gql } from "@/__generated__/gql";
 import { getClient } from "@/providers/ApolloClient";
 import { QueryGetBlockArgs } from '@/__generated__/graphql';
 
-const GET_BLOCK_QUERY = gql(`
+export const GET_BLOCK_QUERY = gql(`
   query GetBlock($blockHash: String) {
     getBlock(blockHash: $blockHash) {
       hash

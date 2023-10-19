@@ -41,7 +41,7 @@ To make your UI work you’ll need to provide an API to fetch the latest blocks 
 ## Solution
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+### Getting Started
 
 First, run the development server:
 
@@ -51,7 +51,7 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Learn More
+### Learn More
 
 To learn more about Next.js, take a look at the following resources:
 

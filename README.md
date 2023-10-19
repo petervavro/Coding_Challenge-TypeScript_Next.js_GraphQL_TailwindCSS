@@ -1,31 +1,24 @@
 # Coding Challenge - Web-based client for blockchain.info
 
 - Technologies: TypeScript, GraphQL (Apollo Server and Client), Next.js, React, Node, Tailwind CSS
-- Author: Peter Vavro (peter@vavro.me)
 
-## The Task:
-
+## Task
 Create a web-based client for ​http://blockchain.info​ that allows users to list the latest blocks and details of each block. A block is just a data structure which groups transactions.
 
-The UI (frontend) component:
-
+### The UI (frontend) component
 Implement a frontend (e.g. React) that contains the following functionality:
 
 - The first view (i.e. the landing screen) should display a list of blocks and the following details for each block:
-
   - Block hash
   - Block time
-  - Bock height
-  - If you get some time you might want to implement pagination on the results.
+  - Block height
 
 - A user should be able to click on each block and view the following details for the block:
   - Size
   - Block index
   - Previous hash
-  - If you get some time it would be great if you could also display the list of transactions for each block - you can decide on what details should be displayed.
 
-### The API component:
-
+### The API component
 To make your UI work you’ll need to provide an API to fetch the latest blocks and block details from blockchain.info.
 
 - To get a list of blocks you can use the following API call:
@@ -37,6 +30,7 @@ To make your UI work you’ll need to provide an API to fetch the latest blocks 
   ➔ https://blockchain.info/blocks/$time_in_milliseconds?format=json
   ```
   E.g.: [https://blockchain.info/blocks/1573858800000?format=json](https://blockchain.info/blocks/1573858800000?format=json), for the "time in milliseconds", you could just make this the previous day (or even configurable if you want to).
+
 - To get the details for a block you can use the following API call:
   ```
   ➔ https://blockchain.info/rawblock/<block-hash>
@@ -44,23 +38,24 @@ To make your UI work you’ll need to provide an API to fetch the latest blocks 
   `<block-hash>` is the hash that is provided for each block in the previous call.
   For example: [https://blockchain.info/rawblock/0000000000000000001088de93437040aabd17df2b9ee3835dfe784f81f67e](https://blockchain.info/rawblock/0000000000000000001088de93437040aabd17df2b9ee3835dfe784f81f67e)
 
-## Available Scripts
+## Solution
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-In the project directory, you can run:
+## Getting Started
 
-### `yarn dev`
+First, run the development server:
 
-Runs the app in the development mode.
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+pnpm dev
+```
 
-### `yarn test:watch`
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Launches the test runner in the interactive watch mode.
+## Learn More
 
-### `yarn build`
+To learn more about Next.js, take a look at the following resources:
 
-Builds the app for production to the `build` folder.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### `yarn apollo:generate`
-
-Download GraphQL schema and generate static types from GraphQL schema. More at [Generate TypeScript Types from GraphQL](https://www.newline.co/@eigenjoy/generate-typescript-types-from-graphql--a754494c) Note: Development server must be up and running.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!

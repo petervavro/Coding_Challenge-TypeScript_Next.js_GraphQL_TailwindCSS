@@ -1,69 +1,37 @@
 {
-  "author": "Peter Vavro <peter@vavro.me> (https://www.vavro.me/)",
-  "name": "coding-challenge-typescript-next.js-graphql-tailwindcss",
-  "version": "1.0.0",
+  "name": "nextjs-with-graphql",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect' next dev",
-    "build": "next build --debug",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
-    "apollo:codegen:schema": "npx apollo client:download-schema --endpoint=http://localhost:3000/api/graphql",
-    "apollo:codegen:generate": "npx apollo client:codegen --localSchemaFile=schema.json --includes=containers/**/*.tsx,pages/**/*.tsx --target=typescript",
-    "apollo:generate": "yarn apollo:codegen:schema && yarn apollo:codegen:generate",
-    "type-check": "tsc --pretty --noEmit",
-    "format": "prettier --write .",
-    "lint": "eslint . --ext ts --ext tsx --ext js",
-    "test": "jest --watch",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --collectCoverage",
-    "test-all": "yarn lint && yarn type-check && yarn test"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@apollo/client": "^3.0.2",
-    "apollo-datasource-rest": "^0.12.0",
-    "apollo-server-micro": "^2.14.2",
-    "graphql": "^14.0.2",
-    "next": "latest",
-    "prop-types": "^15.6.2",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "sass": "^1.32.11"
+    "@apollo/client": "^3.8.6",
+    "@apollo/datasource-rest": "^6.2.1",
+    "@apollo/experimental-nextjs-app-support": "^0.4.3",
+    "@apollo/server": "^4.9.4",
+    "@as-integrations/next": "^2.0.2",
+    "@nextui-org/react": "^2.1.13",
+    "framer-motion": "^10.16.4",
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
+    "next": "13.5.5",
+    "react": "^18",
+    "react-dom": "^18"
   },
-  "license": "MIT",
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.6",
-    "@types/jest": "^26.0.22",
-    "@types/react": "^17.0.3",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
-    "autoprefixer": "^10.2.5",
-    "babel-jest": "^26.6.3",
-    "eslint": "^7.24.0",
-    "eslint-config-prettier": "^8.2.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.23.2",
-    "husky": "^6.0.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^26.6.3",
-    "jest-watch-typeahead": "^0.6.2",
-    "lint-staged": "^10.5.4",
-    "nanoid": "^3.1.22",
-    "postcss": "^8.2.10",
-    "prettier": "^2.2.1",
-    "react-test-renderer": "^17.0.2",
-    "tailwindcss": "^2.1.1",
-    "typescript": "^4.2.4"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn run type-check"
-    }
-  },
-  "lint-staged": {
-    "*.@(ts|tsx)": [
-      "yarn lint",
-      "yarn format"
-    ]
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10",
+    "encoding": "^0.1.13",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.5",
+    "postcss": "^8",
+    "tailwindcss": "^3",
+    "typescript": "^5"
   }
 }
